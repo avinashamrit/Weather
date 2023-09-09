@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content_wrapper" id="app">
+  <div v-if="infos.city">
+    <h1>
+      <i class="fas fa-vector-square w3-spin"></i> Live Weather <i class="fas fa-vector-square w3-spin"></i>
+      <div class="date"></div>
+
+    </h1>
+      <form method='POST'>
+      {% csrf_token %}
+            <input class='form-control' name='city' placeholder="Enter City Name">
+            <button type='submit' class="btn btn-outline-primary">submit</button>
+
+
+    </form>
+    <br>
+    <div class="weather_card" >
+      <div class="weather_card_img">
+        <div class="weather_card_state">
+          <span class="material-icons">
+        <img src='http://openweathermap.org/img/wn/{{data.icon}}.png'>
+          </span>
+        </div>
+      </div>
+
+      <div class="weather_card_infos">
+        <div class="weather_card_infos_title">
+                <i class="fas fa-home"></i> {{data.name}} ,{{data.country}} ,{{data.description}} <br>
+                 <i class="far fa-clock"></i> {{data.t}}
+        </div>
+        <div class="weather_card_infos_temp">
+          <i class="fas fa-temperature-low"></i> {{data.cel_temperature}}°C | {{data.kel_temperature}}°F  <i class="fas fa-wind"> </i> {{data.wind}} km/h
+        </div>
+        <div class="bottom">
+          <div class="weather_card_infos_bottom">
+                Humidity : {{data.humidity}}  Pressure : {{data.pressure}}
+          </div>
+            <div class="footer">
+<script type='text/javascript' src='https://www.freevisitorcounters.com/id=9086ecd899bbab6c6772af9609faa51156e5354d'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/835405/t/5"></script>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for msg in messages %}
+<h1>{{msg}}</h1>
+{% endfor %}
+{% endblock %}
+
